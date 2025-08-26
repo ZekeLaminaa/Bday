@@ -1,0 +1,773 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300italic);
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #704444;
+}
+
+#cake {
+  display: block;
+  position: relative;
+  margin: -10em auto 0 auto;
+}
+
+/* ============================================== Candle
+*/
+
+.velas {
+  background: #ffffff;
+  border-radius: 10px;
+  position: absolute;
+  top: 228px;
+  left: 50%;
+  margin-left: -2.4px;
+  margin-top: -8.33333333px;
+  width: 5px;
+  height: 35px;
+  transform: translateY(-300px);
+  backface-visibility: hidden;
+  animation: in 500ms 6s ease-out forwards;
+}
+.velas:after,
+.velas:before {
+  background: rgba(255, 0, 0, 0.4);
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2.22222222px;
+}
+.velas:after {
+  top: 25%;
+  left: 0;
+}
+.velas:before {
+  top: 45%;
+  left: 0;
+}
+
+/* ============================================== Fire
+*/
+
+.fuego {
+  border-radius: 100%;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  margin-left: -2.6px;
+  width: 6.66666667px;
+  height: 18px;
+}
+.fuego:nth-child(1) {
+  animation: fuego 2s 6.5s infinite;
+}
+.fuego:nth-child(2) {
+  animation: fuego 1.5s 6.5s infinite;
+}
+.fuego:nth-child(3) {
+  animation: fuego 1s 6.5s infinite;
+}
+.fuego:nth-child(4) {
+  animation: fuego 0.5s 6.5s infinite;
+}
+.fuego:nth-child(5) {
+  animation: fuego 0.2s 6.5s infinite;
+}
+
+/* ============================================== Animation Fire
+*/
+
+@keyframes fuego {
+  0%,
+  100% {
+    background: rgba(254, 248, 97, 0.5);
+    box-shadow: 0 0 40px 10px rgba(248, 233, 209, 0.2);
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    background: rgba(255, 50, 0, 0.1);
+    box-shadow: 0 0 40px 20px rgba(248, 233, 209, 0.2);
+    transform: translateY(-20px) scale(0);
+  }
+}
+
+@keyframes in {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.text {
+  color: #ffffff;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  h1 {
+    font-size: 1.4em;
+  }
+}
+/* Typing effect for the heading */
+.text h1 {                 /* ensures size applies (the original CSS used nested syntax) */
+  font-size: 1.4em;
+}
+
+.typing {
+  display: inline-block;   /* keeps the caret tight to the text */
+  white-space: nowrap;     /* one line typing */
+  overflow: hidden;        /* hide text until typed */
+  border-right: 2px solid currentColor;  /* blinking caret */
+  /* 15 characters in "happy birthday!" -> steps(15) and width: 15ch */
+  width: 0;
+  animation: typing 3s steps(15, end) forwards, blink 0.75s step-end infinite;
+}
+
+/* Fade the name in after typing finishes */
+.subtitle {
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+  animation-delay: 3.2s;   /* starts right after typing */
+}
+
+/* Keyframes */
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 15ch; }    /* matches the character count of the heading */
+}
+
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50%      { border-color: currentColor; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* ============================================== Confetti
+*/
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* don’t block clicks */
+  overflow: hidden;
+  z-index: 999;
+}
+
+.confetti {
+  position: absolute;
+  top: -10px;
+  width: 10px;
+  height: 20px;
+  background-color: red;
+  opacity: 0.8;
+  animation: fall linear infinite;
+}
+
+/* Random colors and positions */
+.confetti:nth-child(1) { left: 10%; background: #f28db2; animation-duration: 5s; }
+.confetti:nth-child(2) { left: 20%; background: #fce4ec; animation-duration: 6s; }
+.confetti:nth-child(3) { left: 30%; background: #f8bbd0; animation-duration: 4s; }
+.confetti:nth-child(4) { left: 40%; background: #d94c8a; animation-duration: 7s; }
+.confetti:nth-child(5) { left: 50%; background: #e06c9f; animation-duration: 5.5s; }
+.confetti:nth-child(6) { left: 60%; background: #f06292; animation-duration: 6.5s; }
+.confetti:nth-child(7) { left: 70%; background: #ec407a; animation-duration: 4.5s; }
+.confetti:nth-child(8) { left: 80%; background: #c2185b; animation-duration: 6.2s; }
+.confetti:nth-child(9) { left: 90%; background: #ad1457; animation-duration: 5.8s; }
+.confetti:nth-child(10) { left: 95%; background: #f48fb1; animation-duration: 6.7s; }
+
+/* Falling animation */
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0.5;
+  }
+}
+/* ============================================== Balloons */
+.balloons {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2; /* above background, below UI; tweak if needed */
+}
+
+/* Base balloon */
+.balloon {
+  position: absolute;
+  bottom: -20vh;           /* start off-screen at bottom */
+  width: 46px;
+  height: 60px;
+  border-radius: 46px 46px 40px 40px;
+  background: #f28db2;     /* default pink */
+  box-shadow: inset -6px -10px 0 rgba(0,0,0,0.06);
+  animation: floatUp linear infinite;
+  transform: translateX(-50%);
+}
+
+/* shiny highlight */
+.balloon::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  width: 10px;
+  height: 20px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.55);
+  filter: blur(0.5px);
+}
+
+/* string */
+.balloon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -70px;
+  width: 2px;
+  height: 70px;
+  background: rgba(60, 50, 50, 0.45);
+  transform: translateX(-50%);
+}
+
+/* Float animation */
+@keyframes floatUp {
+  0% {
+    transform: translate(-50%, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  100% {
+    transform: translate(-50%, -120vh) rotate(6deg);
+    opacity: 0.9;
+  }
+}
+
+/* Positions, colors, and speeds (adjust as you like) */
+.balloon:nth-child(1) { left: 10%; background: #f28db2; animation-duration: 12s; animation-delay: 0s; }
+.balloon:nth-child(2) { left: 25%; background: #f48fb1; animation-duration: 14s; animation-delay: 2s; }
+.balloon:nth-child(3) { left: 40%; background: #e06c9f; animation-duration: 13s; animation-delay: 1s; }
+.balloon:nth-child(4) { left: 60%; background: #d94c8a; animation-duration: 15s; animation-delay: 3s; }
+.balloon:nth-child(5) { left: 75%; background: #f8bbd0; animation-duration: 12.5s; animation-delay: 0.5s; }
+.balloon:nth-child(6) { left: 90%; background: #f06292; animation-duration: 16s; animation-delay: 2.7s; }
+
+/* optional: slight horizontal sway for a more natural float */
+.balloon {
+  animation-name: floatUp, sway;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+}
+@keyframes sway {
+  0%   { margin-left: -6px; }
+  50%  { margin-left:  6px; }
+  100% { margin-left: -6px; }
+}
+/* ========= Tap-to-clear transition ========= */
+#cake,
+.velas,
+.confetti-container,
+.balloons {
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* When the body gets .hide-party, fade/scale out the party layer */
+body.hide-party #cake,
+body.hide-party .velas,
+body.hide-party .confetti-container,
+body.hide-party .balloons {
+  opacity: 0;
+  transform: scale(0.98);
+  pointer-events: none;           /* ignore clicks once hidden */
+}
+
+/* Stop animations so they don't keep running off-screen */
+body.hide-party .confetti,
+body.hide-party .balloon {
+  animation: none !important;
+}
+
+/* Optional: a container for your next screen */
+.next-screen {
+  opacity: 0;
+  transition: opacity 0.8s ease 0.2s;
+  pointer-events: none;
+}
+
+body.hide-party .next-screen {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* ========= Tap-to-clear transition (extend to text + hint) ========= */
+#cake,
+.velas,
+.confetti-container,
+.balloons,
+.text,
+.tap-hint {
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* When the body gets .hide-party, fade/scale out everything */
+body.hide-party #cake,
+body.hide-party .velas,
+body.hide-party .confetti-container,
+body.hide-party .balloons,
+body.hide-party .text,
+body.hide-party .tap-hint {
+  opacity: 0;
+  transform: scale(0.98);
+  pointer-events: none;
+}
+
+/* Stop heavy animations once hidden */
+body.hide-party .confetti,
+body.hide-party .balloon,
+body.hide-party .typing {
+  animation: none !important;
+}
+
+/* ========= Tap hint styles ========= */
+.tap-hint {
+  position: fixed;
+  left: 50%;
+  top: 15%;                 /* moved higher (was 24%) */
+  transform: translateX(-50%);
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font: 600 16px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing: 0.2px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+  opacity: 0;                 
+  pointer-events: none;       
+  z-index: 1000;              
+  transition: opacity 0.8s ease;
+}
+
+/* After 10s we add .tap-ready to <body> to reveal the hint */
+body.tap-ready .tap-hint {
+  opacity: 1;
+}
+
+/* When party hides, also fade the hint out */
+body.hide-party .tap-hint {
+  opacity: 0;
+  transform: scale(0.9);
+}
+/* ========= Tap hint styles (white + above cake) ========= */
+.tap-hint {
+  position: fixed;
+  left: 50%;
+  top: 15%;                 /* higher on the page */
+  transform: translateX(-50%);
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.55);  /* keep if you like the pill; remove for no pill */
+  color: #fff;                   /* white font */
+  font: 600 16px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing: 0.2px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+  opacity: 0;                    /* hidden until tap-ready */
+  pointer-events: none;
+  z-index: 1000;                 /* above cake/confetti/balloons */
+  transition: opacity 0.8s ease;
+}
+
+/* Typing target */
+.hint-typing {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid currentColor;  /* caret */
+  width: 0;                               /* will grow during typing */
+}
+
+/* When body gets .tap-ready (after 10s), reveal and type */
+body.tap-ready .tap-hint {
+  opacity: 1;
+}
+body.tap-ready .tap-hint .hint-typing {
+  /* "Tap mo anywhere bebe" has 20 characters → 20ch + steps(20) */
+  animation: hintTyping 2.4s steps(20, end) forwards, hintBlink 0.75s step-end infinite;
+}
+
+/* Fade it away with everything else on tap */
+body.hide-party .tap-hint {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* Keyframes */
+@keyframes hintTyping {
+  from { width: 0; }
+  to   { width: 20ch; }   /* match the character count of the hint text */
+}
+@keyframes hintBlink {
+  0%, 100% { border-color: transparent; }
+  50%      { border-color: currentColor; }
+}
+/* ========= Letter Page ========= */
+.letter-page {
+  position: fixed;
+  inset: 0;                   /* fill the whole screen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: transparent;    /* keep your background gradient */
+  opacity: 0;                 /* hidden initially */
+  pointer-events: none;       /* clicks pass through until shown */
+  transition: opacity 0.8s ease;
+  z-index: 5;
+}
+
+.letter-page .letter {
+  max-width: 600px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  font-family: Georgia, serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* When party is gone, reveal the letter page */
+body.hide-party .letter-page {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* ===== Music button */
+.music-btn {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font: 600 14px/1 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #1f1f1f;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform .12s ease, opacity .2s ease, background .2s ease;
+  margin-top: .25rem;
+}
+.music-btn:hover { transform: translateY(-1px); }
+.music-btn:active { transform: translateY(0); }
+.music-btn[aria-pressed="true"] { background: #e91e63; }
+
+/* ===== Letter typing area (shows a caret) */
+.typing-letter {
+  white-space: pre-wrap;          /* keep line breaks */
+  min-height: 10em;               /* reserve space so layout is stable */
+  position: relative;
+}
+.typing-letter::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  vertical-align: -0.15em;
+  margin-left: 2px;
+  background: currentColor;
+  animation: caretBlink .8s step-end infinite;
+}
+@keyframes caretBlink {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
+}
+
+/* When party hides, the .letter-page becomes visible (you already added this) */
+/* body.hide-party .letter-page { opacity: 1; pointer-events: auto; } */
+/* ===== Now Playing (Spotify-like) ===== */
+.now-playing {
+  max-width: 540px;
+  margin: 1rem auto 1.25rem;
+  padding: 0 1rem;
+}
+
+.art-carousel {
+  position: relative;
+  width: 100%;
+  height: 260px;              /* adjust height as you like */
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+/* Stack images and crossfade them */
+.art-carousel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: artFade 25s infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Crossfade keyframes: each image gets ~5s "on" time */
+@keyframes artFade {
+  0%   { opacity: 0; }
+  4%   { opacity: 1; }   /* fade in */
+  16%  { opacity: 1; }   /* stay visible */
+  20%  { opacity: 0; }   /* fade out */
+  100% { opacity: 0; }
+}
+
+/* Pause carousel when not playing */
+.art-carousel.paused img { animation-play-state: paused; }
+
+.player-meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .5rem;
+  margin-top: .75rem;
+}
+
+.titles .track-title {
+  margin: 0;
+  font: 700 1.125rem/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+.titles .track-artist {
+  margin: .125rem 0 0;
+  opacity: .8;
+  font: 500 .95rem/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Reuse your .music-btn styles; add spacing if needed */
+.player-controls .music-btn { margin-top: .25rem; }
+
+/* Time + progress like Spotify */
+.time-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: .6rem;
+  align-items: center;
+  margin-top: .5rem;
+}
+
+.time-row span {
+  font: 500 .85rem/1 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  opacity: .85;
+}
+
+.progress {
+  height: 6px;
+  background: rgba(255,255,255,.25);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.progress .bar {
+  width: 0%;
+  height: 100%;
+  background: #1db954; /* Spotify green-ish */
+  border-radius: 999px;
+  transition: width .15s linear;
+}
+
+/* Optional: make carousel taller on larger screens */
+@media (min-width: 640px) {
+  .art-carousel { height: 320px; }
+}
+/* ===== Letter card: gray box only, cropped, better layout ===== */
+:root {
+  --letter-max-w: 720px;
+}
+
+
+/* Center the letter card */
+.letter-page {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* Gray “card” that holds header + now-playing + body */
+.letter {
+  width: min(var(--letter-max-w), 94vw);
+  max-height: calc(100vh - 80px);
+  background: #2c2c2c;      /* gray box */
+  color: #fff;
+  border-radius: 20px;
+  overflow: hidden;          /* crop inner edges */
+  box-shadow: 0 12px 40px rgba(0,0,0,.35);
+  display: grid;
+  grid-template-rows: auto auto 1fr; /* header, now-playing, body(scrolls) */
+}
+
+/* Keep header visible */
+.letter-head {
+  padding: 18px 20px 10px;
+  background: inherit;
+}
+
+/* ===== Spotify-like block tweaks: full width art, no squeeze ===== */
+.now-playing {
+  margin: 0;
+  padding: 0 20px 14px;
+  background: inherit;
+}
+
+/* Make the artwork fill the card width and scale nicely */
+.art-carousel {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: clamp(240px, 38vw, 360px);  /* responsive height */
+  min-height: 240px;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+.art-carousel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: artFade 25s infinite;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes artFade {
+  0% {opacity:0;} 4% {opacity:1;} 16% {opacity:1;} 20% {opacity:0;} 100% {opacity:0;}
+}
+.art-carousel.paused img { animation-play-state: paused; }
+
+/* Track title/artist + progress */
+.player-meta { margin-top: .65rem; }
+.titles { padding: 0 2px; }
+.titles .track-title { margin: 0; font: 700 1.15rem/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.titles .track-artist { margin: .125rem 0 0; opacity: .9; font: 500 .95rem/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+
+.player-controls .music-btn { margin-top: .35rem; }
+
+.time-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: .6rem;
+  align-items: center;
+  margin-top: .5rem;
+}
+.time-row span { font: 500 .85rem/1 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; opacity: .9; }
+.progress { height: 6px; background: rgba(255,255,255,.18); border-radius: 999px; overflow: hidden; }
+.progress .bar { height: 100%; width: 0%; background: #1db954; border-radius: 999px; transition: width .15s linear; }
+
+/* ===== Only the letter text scrolls; keep it inside the card ===== */
+.letter-body {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  padding: 16px 20px 22px;
+  background: inherit;
+  /* subtle fade to hint scrolling */
+  mask-image: linear-gradient(to bottom, transparent 0, black 16px, black calc(100% - 16px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 16px, black calc(100% - 16px), transparent 100%);
+}
+
+/* Wrap long words/lines so nothing spills outside */
+.typing-letter {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+/* === Lyric Card Theme (brown, like the screenshot) === */
+:root {
+  --card-bg: #9a6f5b;      /* warm brown */
+  --card-fg: #ffffff;      /* white text */
+}
+
+/* Card + sections */
+.letter {
+  background: var(--card-bg) !important;
+  color: var(--card-fg) !important;
+  border-radius: 22px;
+}
+
+/* Remove the white panel feel inside the card */
+.letter-head,
+.now-playing,
+.letter-body {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Header spacing & typography */
+.letter-head {
+  padding: 18px 20px 6px !important;
+}
+.letter-head h1 {
+  margin: 0 0 6px 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: clamp(22px, 3.2vw, 28px);
+  color: var(--card-fg);
+}
+
+/* Make the artwork area subtle (or hide it) */
+.art-carousel {
+         /* collapse if you don't want big photos */
+  overflow: hidden;
+  margin: 0;
+  border-radius: 16px;
+}
+
+/* Track title + artist like Spotify */
+.titles .track-title {
+  color: var(--card-fg);
+  font: 800 clamp(18px, 2.6vw, 22px)/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  margin: 2px 0 0 0;
+}
+.titles .track-artist {
+  color: rgba(255,255,255,.85);
+  margin: 4px 0 0 0;
+  font: 600 clamp(13px, 2vw, 15px)/1.1 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Big centered lyrics */
+.letter-body {
+  padding: 12px 18px 18px !important;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  /* soft edges so it feels like a lyric area */
+  mask-image: linear-gradient(to bottom, transparent 0, black 18px, black calc(100% - 18px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 18px, black calc(100% - 18px), transparent 100%);
+}
+.typing-letter {
+  color: var(--card-fg);
+  font: 700 clamp(18px, 3.4vw, 32px)/1.35 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing: .2px;
+  white-space: pre-wrap;   /* keep the line breaks from your message */
+}
+
+/* Progress bar in white */
+.time-row span {
+  color: rgba(255,255,255,.9);
+}
+.progress {
+  background: rgba(255,255,255,.25) !important;
+}
+.progress .bar {
+  background: #ffffff !important;
+}
+
+/* Play button matches the card */
+.music-btn {
+  background: rgba(0,0,0,.35);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(0,0,0,.25);
+}
+.music-btn[aria-pressed="true"] { background: rgba(0,0,0,.55); }
